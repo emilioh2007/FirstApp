@@ -43,6 +43,27 @@
         android:inputType="number"
         android:textSize="24sp"/>
 
+    <TextView
+        android:id="@+id/tvSexo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Genêro:"
+        android:inputType="date"
+        android:textSize="24sp"
+        android:orientation="horizontal"/>
+
+
+    <RadioButton
+        android:id="@+id/btnMasculino"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Masculino" />
+
+    <RadioButton
+        android:id="@+id/btnFeminino"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Feminino" />
 
     <Button
         android:id="@+id/btnconcluir"
