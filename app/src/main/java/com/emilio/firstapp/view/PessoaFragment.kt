@@ -38,15 +38,20 @@ class PessoaFragment : Fragment() {
 
             var faixaE = ""
 
-// Sexo
-            if (binding.btnMasculino.isChecked){
-                sexo = "Homem"
-            }else{
-                sexo = "Mulher"
-            }
+
 
 // Nome
-            if (nome != "" && anoNascimento != ""){
+            if (nome != "" && anoNascimento != "" &&
+                binding.btnMasculino.isChecked || binding.btnFeminino.isChecked){
+
+
+// Sexo
+                if (binding.btnMasculino.isChecked){
+                    sexo = "Homem"
+                }else{
+                    sexo = "Mulher"
+                }
+
 
                 binding.tvNome.text = "Nome: ${nome}"
 
@@ -83,7 +88,7 @@ class PessoaFragment : Fragment() {
                 // Voltar pra tela anterior
                 findNavController().navigateUp()
             } else{
-                Toast.makeText(requireContext(), "Digite od dados necessarios", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "Digite od dados necessarios corretamente", Toast.LENGTH_LONG).show()
             }
 
         }

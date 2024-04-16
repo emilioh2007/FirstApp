@@ -52,18 +52,25 @@
         android:textSize="24sp"
         android:orientation="horizontal"/>
 
-
-    <RadioButton
-        android:id="@+id/btnMasculino"
+    <RadioGroup
+        android:id="@+id/rgSexo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Masculino" />
+        android:orientation="horizontal">
 
-    <RadioButton
-        android:id="@+id/btnFeminino"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Feminino" />
+        <RadioButton
+            android:id="@+id/btnMasculino"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Masculino" />
+
+        <RadioButton
+            android:id="@+id/btnFeminino"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Feminino" />
+
+    </RadioGroup>
 
     <Button
         android:id="@+id/btnconcluir"
