@@ -25,4 +25,10 @@
         android:name="com.emilio.firstapp.view.AllPessoasFragment"
         android:label="Lista de Pessoas"
         tools:layout="@layout/fragment_all_pessoas" />
+
+    <fragment
+        android:id="@+id/detailPessoaFragment"
+        android:name="com.emilio.firstapp.view.PessoaDetailFragment"
+        android:label="Detalhes de Pessoas"
+        tools:layout="@layout/fragment_pessoa_detail" />
 </navigation>

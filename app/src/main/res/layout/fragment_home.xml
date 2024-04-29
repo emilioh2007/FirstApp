@@ -19,5 +19,4 @@
         android:layout_height="wrap_content"
         android:text="Verifivar telefone e e-mail"/>
 
-
 </LinearLayout>

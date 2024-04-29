@@ -1,5 +1,6 @@
 package com.emilio.firstapp.view
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -30,6 +31,11 @@ class PessoaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Carregar a pessoa caso tenha selecionado
+        arguments?.let {
+            viewModel.getPessoa(it.getInt("pessoaId"))
+        }
+
         binding.btnconcluir.setOnClickListener {
             val nome = binding.edtNome.editableText.toString()
             var anoNascimento = binding.edtAno.editableText.toString()
@@ -37,8 +43,6 @@ class PessoaFragment : Fragment() {
             var sexo = ""
 
             var faixaE = ""
-
-
 
 // Nome
             if (nome != "" && anoNascimento != "" &&
@@ -79,8 +83,13 @@ class PessoaFragment : Fragment() {
                     sexo = sexo,
                     faixaE = faixaE
                 )
+                viewModel.pessoa.value?.let {
+                    pessoa.id = it.id
+                    viewModel.update(pessoa)
+                } ?: run {
+                    viewModel.insert(pessoa)
+                }
 
-                viewModel.insert(pessoa)
 
                 binding.edtNome.editableText.clear()
                 binding.edtAno.editableText.clear()
@@ -93,6 +102,29 @@ class PessoaFragment : Fragment() {
 
         }
 
+        binding.btnDeletar.setOnClickListener{
+            AlertDialog.Builder(requireContext())
+                .setTitle("Exclusão de Pessoa")
+                .setMessage("Voçê realmente deseja exclir?")
+                .setPositiveButton("Sim"){ _,_ ->
+                    viewModel.delete(viewModel.pessoa.value?.id ?: 0)
+                    findNavController().navigateUp()
+                }
+                .setNegativeButton("Não"){_,_ ->}
+                .show()
+        }
 
+        viewModel.pessoa.observe(viewLifecycleOwner) {pessoa ->
+            binding.edtNome.setText(pessoa.nome)
+            binding.edtAno.setText((LocalDateTime.now().year - pessoa.idade).toString())
+
+            if (pessoa.sexo == "Homem"){
+                binding.btnMasculino.isChecked = true
+            }else {
+                binding.btnFeminino.isChecked = true
+            }
+
+            binding.btnDeletar.visibility = View.VISIBLE
+        }
     }
 }

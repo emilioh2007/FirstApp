@@ -11,10 +11,13 @@ import com.emilio.firstapp.service.model.Pessoa
 class PessoaAdapter(pessoas: List<Pessoa>?, private val clickListListener: (Pessoa) -> Unit):
     RecyclerView.Adapter<PessoaAdapter.PessoaViewHolder>() {
 
+        // criar uma lista vazia de pessoas
         private var pessoaList: List<Pessoa> = arrayListOf()
 
     class PessoaViewHolder(private val binding: ListItemPessoaBinding) :
             RecyclerView.ViewHolder(binding.root) {
+
+                // carrega as informações da pessoa na lista
                 fun bind(pessoa: Pessoa, clickListListener: (Pessoa) -> Unit) {
                     binding.tvNome.text = pessoa.nome
                     binding.tvIdade.text = pessoa.idade.toString() + " Anos"
@@ -36,6 +39,7 @@ class PessoaAdapter(pessoas: List<Pessoa>?, private val clickListListener: (Pess
 //                    }
 
 
+                    // configura o click de algum item da lista
                     binding.root.setOnClickListener{
                         clickListListener(pessoa)
                     }
@@ -43,6 +47,7 @@ class PessoaAdapter(pessoas: List<Pessoa>?, private val clickListListener: (Pess
             }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PessoaViewHolder {
+        // configurar
         val listItemPessoaBinding = ListItemPessoaBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return PessoaViewHolder(listItemPessoaBinding)
     }
@@ -55,6 +60,7 @@ class PessoaAdapter(pessoas: List<Pessoa>?, private val clickListListener: (Pess
         holder.bind(pessoaList[position], clickListListener)
     }
 
+    // carrega a lista de pessoas para exibir
     fun updatePessoa(list: List<Pessoa>){
         pessoaList = list
         notifyDataSetChanged()
